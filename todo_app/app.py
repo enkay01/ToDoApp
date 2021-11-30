@@ -19,3 +19,12 @@ def add_item_route():
     items=ses.get_items()
     return render_template("index.html", items=items)
     
+@app.route('/mark-complete', methods=['POST'])
+def mark_complete():
+    ids = request.form.getlist('list-item')
+    for id in ids:
+        cur_item = ses.get_item(id)
+        cur_item['status'] = 'Complete'
+        ses.remove_item(cur_item)
+    items = ses.get_items()
+    return render_template('index.html', items=items)
