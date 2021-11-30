@@ -53,6 +53,11 @@ def add_item(title):
 
     return item
 
+def remove_item(item):
+    existing_items = get_items()
+    updated_items = [item if not item['id'] == existing_item['id'] else existing_item for existing_item in existing_items]
+    session['items'] = updated_items
+    return
 
 def save_item(item):
     """
