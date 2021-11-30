@@ -25,6 +25,6 @@ def mark_complete():
     for id in ids:
         cur_item = ses.get_item(id)
         cur_item['status'] = 'Complete'
-        ses.remove_item(cur_item)
+        ses.save_item(cur_item)
     items = ses.get_items()
     return render_template('index.html', items=items)
